@@ -6,10 +6,11 @@
   <title>Valorant Team Synergy Planner</title>
   <meta name="description" content="Build a 5-stack, get live recommendations, and see your team synergy rating." />
   <link rel="icon" href="data:," />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=1.0.1" />
 </head>
 <body>
   <header class="app-header">
+    <span class="app-version" id="appVersion" title="Application version"></span>
     <h1>Valorant Team Synergy Planner</h1>
     <p class="subtitle">Pick agents, build your 5-stack, and see synergy &amp; recommendations update live.</p>
   </header>
@@ -57,6 +58,7 @@
     <p>Static site, no backend. Agent roster is fetched once from a public resource and cached locally; see README for details.</p>
   </footer>
 
+  <script src="js/version.js"></script>
   <script src="js/data/agents.js"></script>
   <script src="js/data/synergy.js"></script>
   <script src="js/data-source.js"></script>

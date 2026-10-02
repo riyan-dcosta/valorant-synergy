@@ -30,8 +30,13 @@
     synergyContent: document.getElementById("synergyContent"),
     toast: document.getElementById("toast"),
     dataSourceBadge: document.getElementById("dataSourceBadge"),
+    appVersion: document.getElementById("appVersion"),
     tabs: Array.from(document.querySelectorAll(".tab")),
   };
+
+  if (el.appVersion) {
+    el.appVersion.textContent = `v${window.VSP_APP_VERSION || "0.0.0"}`;
+  }
 
   let toastTimer = null;
   function showToast(message) {
