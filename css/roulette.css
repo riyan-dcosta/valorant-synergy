@@ -1,0 +1,189 @@
+/**
+ * Agent Roulette page styles. Loaded after css/style.css, so these rules
+ * only need to add/override what's specific to roulette.html — the
+ * header, tabs, agent grid base styles, panels, toast, etc. are shared.
+ */
+
+/* Keep agent artwork square on this page instead of the circular avatars
+   used on the Team Planner. */
+.roulette-agent-grid .agent-tile img,
+.roulette-agent-grid .avatar-fallback,
+.wheel-tile img,
+.wheel-tile .avatar-fallback,
+.winner-card img,
+.winner-card .avatar-fallback {
+  border-radius: 8px;
+}
+
+.agent-tile.in-pool { border-color: var(--accent); background: #2a1418; }
+
+.pool-count {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  white-space: nowrap;
+}
+
+.roulette-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  border-radius: 8px;
+  padding: 0.55rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid var(--border);
+  background: var(--panel-bg-alt);
+  color: var(--text);
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+}
+.btn:hover:not(:disabled) { transform: translateY(-1px); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn-secondary:hover:not(:disabled) { border-color: var(--text-dim); }
+
+.btn-spin {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.btn-spin:hover:not(:disabled) { background: var(--accent); color: #fff; }
+
+.roulette-wheel-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 1rem 0;
+}
+
+.roulette-wheel-row .placeholder { color: var(--text-dim); text-align: center; }
+
+/* ---------------- The wheel itself ---------------- */
+
+.wheel-circle {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px dashed var(--border);
+  background: radial-gradient(circle, var(--panel-bg-alt) 0%, var(--panel-bg) 70%);
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 18px solid var(--accent);
+  z-index: 3;
+}
+
+.wheel-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--panel-bg);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--text-dim);
+  z-index: 1;
+}
+
+.wheel-tile {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  width: 64px;
+  padding: 0.3rem;
+  border-radius: 8px;
+  background: var(--panel-bg-alt);
+  border: 3px solid var(--border);
+  transition: border-color 0.1s linear;
+  z-index: 2;
+}
+
+.wheel-tile img,
+.wheel-tile .avatar-fallback {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.wheel-tile-name {
+  font-size: 0.65rem;
+  line-height: 1.1;
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The spinning highlight: border color is driven by --wheel-border, set
+   from JS on every "tick" of the spin animation so it visibly changes
+   color as the wheel cycles through agents. */
+.wheel-tile.wheel-highlight {
+  border-color: var(--wheel-border, var(--accent));
+  box-shadow: 0 0 16px 2px var(--wheel-border, var(--accent));
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+/* The agent the wheel lands on. */
+.wheel-tile.wheel-winner {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft), 0 0 20px 4px var(--accent-soft);
+  transform: translate(-50%, -50%) scale(1.18);
+  animation: winner-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes winner-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--accent-soft), 0 0 20px 4px var(--accent-soft); }
+  50% { box-shadow: 0 0 0 7px var(--accent-soft), 0 0 30px 10px var(--accent-soft); }
+}
+
+/* ---------------- Winner panel ---------------- */
+
+.winner-panel .winner-display { display: flex; justify-content: center; padding: 0.5rem 0; }
+.winner-panel .placeholder { color: var(--text-dim); }
+
+.winner-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+}
+
+.winner-card img,
+.winner-card .avatar-fallback {
+  width: 96px;
+  height: 96px;
+  border: 3px solid var(--accent);
+}
+
+.winner-name { font-size: 1.3rem; font-weight: 700; }
+
+@media (max-width: 600px) {
+  .pool-count { margin-left: 0; }
+}

@@ -45,6 +45,22 @@ CSS and vanilla JS, deployed via GitHub Pages.
     in your comp, and illustrative reference stats (average win rate,
     role-balance deviation).
 
+## Agent Roulette (`roulette.html`)
+
+A second page, linked from the header nav, for deciding which agent to
+play this round:
+
+- Reuses the same fixed-height agent grid and role filters as the
+  planner, but clicking an agent toggles it in/out of the **roulette
+  pool** instead of a team slot — any number of agents can be selected.
+- The pool is rendered as a circular wheel of square agent tiles (no
+  circular cropping, unlike the planner's avatars).
+- **Spin the Wheel** runs a decelerating animation that jumps between
+  pool tiles, recoloring the active tile's border on every tick, and
+  settles on a randomly chosen winner — shown large in the "This Round"
+  panel below.
+- **Clear Pool** empties the current selection and resets the wheel.
+
 ## Data sources
 
 - **Agent roster** (names, roles, portraits): fetched once from the

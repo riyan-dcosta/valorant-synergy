@@ -46,6 +46,24 @@ html, body {
   white-space: nowrap;
 }
 
+.app-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+.app-nav-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.app-nav-link:hover { color: var(--text); background: var(--panel-bg-alt); }
+.app-nav-link.active { color: var(--text); background: var(--accent-soft); border-color: var(--accent); }
+
 /* ===================== TOP SECTION (fixed height) ===================== */
 .top-section {
   height: var(--top-section-height);
