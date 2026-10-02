@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valorant Team Synergy Planner</title>
+  <meta name="description" content="Build a 5-stack, get live recommendations, and see your team synergy rating." />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Valorant Team Synergy Planner</h1>
+    <p class="subtitle">Pick agents, build your 5-stack, and see synergy &amp; recommendations update live.</p>
+  </header>
+
+  <!-- ============ TOP SECTION (fixed height, never shifts) ============ -->
+  <section class="top-section" aria-label="Agent selection">
+    <div class="tabs" role="tablist" aria-label="Agent role filters">
+      <button class="tab active" role="tab" aria-selected="true" data-filter="all">All Agents</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="Initiator">Initiators</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="Duelist">Duelists</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="Sentinel">Sentinels</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="Controller">Controllers</button>
+      <span class="data-source-badge" id="dataSourceBadge" title="Where agent data came from"></span>
+    </div>
+    <div class="agent-grid-viewport">
+      <div class="agent-grid" id="agentGrid" role="list" aria-label="Agents">
+        <!-- agent tiles injected by js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOTTOM SECTION (static position) ============ -->
+  <main class="bottom-section">
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <section class="panel" aria-label="Your team">
+      <h2>Team Slots <span class="hint">click a slot to replace it, or just pick an agent to fill the next empty slot</span></h2>
+      <div class="slot-row" id="teamSlots"></div>
+    </section>
+
+    <section class="panel" aria-label="Recommended agents">
+      <h2>Recommended Agents <span class="hint">seeded by your first pick, refined as you add more</span></h2>
+      <div class="slot-row recommended-row" id="recommendedSlots"></div>
+    </section>
+
+    <section class="panel synergy-panel" aria-label="Synergy and stats">
+      <h2>Synergy &amp; Stats</h2>
+      <div id="synergyContent" class="synergy-content">
+        <p class="placeholder">Fill all 5 team slots to see your synergy rating and stats.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Static site, no backend. Agent roster is fetched once from a public resource and cached locally; see README for details.</p>
+  </footer>
+
+  <script src="js/data/agents.js"></script>
+  <script src="js/data/synergy.js"></script>
+  <script src="js/data-source.js"></script>
+  <script src="js/recommend.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
