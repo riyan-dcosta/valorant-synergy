@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valorant Team Synergy Planner</title>
-  <meta name="description" content="Build a 5-stack, get live recommendations, and see your team synergy rating." />
+  <title>Agent Roulette — Valorant Team Synergy Planner</title>
+  <meta name="description" content="Pick any number of agents and spin the roulette to randomly choose which agent to play this round." />
   <link rel="icon" href="data:," />
   <link rel="stylesheet" href="css/style.css?v=1.1.0" />
+  <link rel="stylesheet" href="css/roulette.css?v=1.0.0" />
 </head>
 <body>
   <header class="app-header">
     <span class="app-version" id="appVersion" title="Application version"></span>
     <nav class="app-nav">
-      <a class="app-nav-link active" href="index.html">Team Planner</a>
-      <a class="app-nav-link" href="roulette.html">Agent Roulette</a>
+      <a class="app-nav-link" href="index.html">Team Planner</a>
+      <a class="app-nav-link active" href="roulette.html">Agent Roulette</a>
     </nav>
-    <h1>Valorant Team Synergy Planner</h1>
-    <p class="subtitle">Pick agents, build your 5-stack, and see synergy &amp; recommendations update live.</p>
+    <h1>Agent Roulette</h1>
+    <p class="subtitle">Pick any number of agents, then spin to randomly choose who you're playing this round.</p>
   </header>
 
   <!-- ============ TOP SECTION (fixed height, never shifts) ============ -->
@@ -30,7 +31,7 @@
       <span class="data-source-badge" id="dataSourceBadge" title="Where agent data came from"></span>
     </div>
     <div class="agent-grid-viewport">
-      <div class="agent-grid" id="agentGrid" role="list" aria-label="Agents">
+      <div class="agent-grid roulette-agent-grid" id="agentGrid" role="list" aria-label="Agents">
         <!-- agent tiles injected by js -->
       </div>
     </div>
@@ -40,20 +41,25 @@
   <main class="bottom-section">
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <section class="panel" aria-label="Your team">
-      <h2>Team Slots <span class="hint">click a slot to replace it, or just pick an agent to fill the next empty slot</span></h2>
-      <div class="slot-row" id="teamSlots"></div>
+    <section class="panel" aria-label="Roulette controls">
+      <h2>
+        Roulette Pool
+        <span class="hint">click agents above to add/remove them from the wheel — pick any number</span>
+        <span class="pool-count" id="poolCount">0 selected</span>
+      </h2>
+      <div class="roulette-controls">
+        <button class="btn btn-secondary" id="clearPoolBtn" type="button">Clear Pool</button>
+        <button class="btn btn-spin" id="spinBtn" type="button" disabled>Spin the Wheel</button>
+      </div>
+      <div class="roulette-wheel-row" id="rouletteWheel">
+        <p class="placeholder" id="wheelPlaceholder">Select at least 2 agents above to build your roulette.</p>
+      </div>
     </section>
 
-    <section class="panel" aria-label="Recommended agents">
-      <h2>Recommended Agents <span class="hint">seeded by your first pick, refined as you add more</span></h2>
-      <div class="slot-row recommended-row" id="recommendedSlots"></div>
-    </section>
-
-    <section class="panel synergy-panel" aria-label="Synergy and stats">
-      <h2>Synergy &amp; Stats</h2>
-      <div id="synergyContent" class="synergy-content">
-        <p class="placeholder">Fill all 5 team slots to see your synergy rating and stats.</p>
+    <section class="panel winner-panel" aria-label="Round result">
+      <h2>This Round <span class="hint">the agent you'll play next</span></h2>
+      <div class="winner-display" id="winnerDisplay">
+        <p class="placeholder">Spin the wheel to find out.</p>
       </div>
     </section>
   </main>
@@ -64,9 +70,7 @@
 
   <script src="js/version.js"></script>
   <script src="js/data/agents.js"></script>
-  <script src="js/data/synergy.js"></script>
   <script src="js/data-source.js"></script>
-  <script src="js/recommend.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/roulette.js"></script>
 </body>
 </html>
