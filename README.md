@@ -107,3 +107,11 @@ root to GitHub Pages on every push to `main` using the official
 2. Under **Build and deployment → Source**, choose **GitHub Actions**.
 3. Push to `main` (or run the workflow manually) — the site will be
    published at `https://<owner>.github.io/valorant-synergy/`.
+
+## Versioning
+
+The app version is shown in the top-right corner of the header and is
+defined in `js/version.js` (`window.VSP_APP_VERSION`). Bump this value on
+every commit, and update the matching `?v=` cache-busting query string on
+the `css/style.css` link in `index.html`, so browsers always pick up the
+latest styles/scripts after a deploy.
