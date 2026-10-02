@@ -118,6 +118,16 @@ html, body {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.slot img,
+.slot .avatar-fallback {
+  width: calc(var(--slot-size) * 0.5);
+  height: calc(var(--slot-size) * 0.5);
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
 .avatar-fallback {
   display: flex;
   align-items: center;
