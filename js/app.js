@@ -23,6 +23,21 @@
     currentFilter: "all",
   };
 
+  function clearTeamSlots() {
+    state.teamSlots = Array(SLOT_COUNT).fill(null);
+    state.activeSlotIndex = null;
+    renderTeamSlots();
+    renderAgentGrid();
+    renderRecommended();
+  }
+
+  // Wire up the "Clear" button
+  const clearButton = document.getElementById('clearTeamSlots');
+  if (clearButton) {
+    clearButton.addEventListener("click", clearTeamSlots);
+  }
+
+
   const el = {
     agentGrid: document.getElementById("agentGrid"),
     teamSlots: document.getElementById("teamSlots"),
@@ -332,4 +347,5 @@
   }
 
   init();
+
 })();

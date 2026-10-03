@@ -185,6 +185,20 @@ html, body {
   position: relative;
 }
 
+.clear-button {
+  background: var(--panel-bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.clear-button:hover {
+  border-color: var(--accent);
+  background: var(--panel-bg);
+}
+
 .panel {
   background: var(--panel-bg);
   border: 1px solid var(--border);
